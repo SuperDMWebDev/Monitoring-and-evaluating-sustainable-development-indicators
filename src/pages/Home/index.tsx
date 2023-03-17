@@ -7,7 +7,6 @@ import { UserOutlined, BookOutlined, SettingOutlined, DatabaseOutlined } from '@
 import { ItemType } from 'antd/es/menu/hooks/useItems';
 import ListTeacher from '../../components/AdminList/ListTeacher';
 import ListArticle from '../../components/AdminList/ListArticle';
-import SearchBarAdmin from '../../components/SearchBarAdmin/SearchBarAdmin';
 const { Content } = Layout;
 
 const items: ItemType[] = [
@@ -32,7 +31,7 @@ const items: ItemType[] = [
     label: 'Article'
   }
 ];
-export default function Admin() {
+export function Home() {
   const [collapsed, setCollapsed] = useState(false);
   const [currentKey, setCurrentKey] = useState('1');
   return (
@@ -48,7 +47,6 @@ export default function Admin() {
             setCurrentKey={setCurrentKey}
           />
           <Layout>
-            <SearchBarAdmin />
             <Content
               style={{
                 margin: '30px 30px',

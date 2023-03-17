@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import './all.scss';
-import Admin from './pages/Admin';
+import { Home } from './pages/Home';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 import { defaultToastConfig } from './utils/config';
@@ -12,7 +12,7 @@ const App = () => {
       <ToastContainer {...defaultToastConfig} />
       <BrowserRouter>
         <Routes>
-          <Route path="/home" element={<Admin />} />
+          <Route path="/home" element={<Home />} />
         </Routes>
       </BrowserRouter>
     </div>
