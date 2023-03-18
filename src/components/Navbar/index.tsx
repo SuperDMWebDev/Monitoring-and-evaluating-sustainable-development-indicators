@@ -56,10 +56,10 @@ const Navbar = () => {
           <StyledInputBase placeholder="Tìm kiếm..." inputProps={{ 'aria-label': 'search' }} />
         </Search>
 
-        <div className="account">
+        {/* <div className="account">
           <AccountCircleOutlinedIcon />
           <a href="">Admin</a>
-        </div>
+        </div> */}
       </div>
     </Styled>
   );

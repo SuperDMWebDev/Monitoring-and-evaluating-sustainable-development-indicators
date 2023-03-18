@@ -3,16 +3,21 @@ import { Layout } from 'antd';
 import Styled from './style';
 
 import Sidebar from '../../components/Sidebar';
-import { UserOutlined, BookOutlined, SettingOutlined, DatabaseOutlined } from '@ant-design/icons';
+import { BookOutlined, DashboardOutlined } from '@ant-design/icons';
 import { ItemType } from 'antd/es/menu/hooks/useItems';
 import ReportList from '../../components/HomePage/ReportList';
-import Navbar from '../../components/Navbar';
+import LandingPage from '../../components/HomePage/LandingPage';
 
 const { Content } = Layout;
 
 const items: ItemType[] = [
   {
     key: '1',
+    icon: <DashboardOutlined />,
+    label: 'Dashboard'
+  },
+  {
+    key: '2',
     icon: <BookOutlined />,
     label: 'Report'
   }
@@ -32,7 +37,6 @@ export function Home() {
             setCurrentKey={setCurrentKey}
           />
           <Layout>
-            <Navbar />
             <Content
               style={{
                 margin: '30px 30px',
@@ -40,7 +44,8 @@ export function Home() {
                 background: 'white',
                 borderRadius: '10px'
               }}>
-              {currentKey == '1' && <ReportList />}
+              {currentKey === '1' && <LandingPage />}
+              {currentKey === '2' && <ReportList />}
             </Content>
           </Layout>
         </Layout>
