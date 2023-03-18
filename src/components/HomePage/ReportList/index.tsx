@@ -10,29 +10,18 @@ import { Dropdown } from 'antd';
 import Loader from '../../Loader/Loader';
 import './style.css';
 import { useNavigate } from 'react-router-dom';
+import { accessData } from '../../../utils/constants';
 
 interface DataType {
-  key: number;
-  name: string;
-  university: string;
-  email: string;
-  age: number;
-  address: string;
+  Entity: String;
+  Code: String;
+  Year: number;
+  'Access.to.electricity': number;
 }
 
 type DataIndex = keyof DataType;
 
-const data: DataType[] = [];
-for (let i = 0; i < 46; i++) {
-  data.push({
-    key: i,
-    name: `Member. ${i}`,
-    university: 'University of Science',
-    email: `member${i}@gmail.com`,
-    age: 32,
-    address: `London, Park Lane no. ${i}`
-  });
-}
+const data: DataType[] = accessData;
 
 // Menu Dropdown
 const items: MenuProps['items'] = [
@@ -51,9 +40,7 @@ const ReportList: React.FC = () => {
   const [searchText, setSearchText] = useState('');
   const [searchedColumn, setSearchedColumn] = useState('');
   const searchInput = useRef<InputRef>(null);
-  const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(true);
-  const navigate = useNavigate();
 
   useEffect(() => {
     setTimeout(() => {
@@ -141,60 +128,32 @@ const ReportList: React.FC = () => {
 
   const columns: ColumnsType<DataType> = [
     {
-      title: 'Name',
-      dataIndex: 'name',
-      key: 'name',
+      title: 'Entity',
+      dataIndex: 'Entity',
+      key: 'Entity',
       width: '20%',
-      ...getColumnSearchProps('name'),
-      onCell: () => {
-        return {
-          onClick: (ev) => {
-            navigate('/detail-page');
-          }
-        };
-      }
+      ...getColumnSearchProps('Entity')
     },
     {
-      title: 'Age',
-      dataIndex: 'age',
-      key: 'age',
+      title: 'Code',
+      dataIndex: 'Code',
+      key: 'Code',
       width: '5%',
-      ...getColumnSearchProps('age')
+      ...getColumnSearchProps('Code')
     },
     {
-      title: 'University',
-      dataIndex: 'university',
-      key: 'university',
-      width: '25%',
-      ...getColumnSearchProps('age')
+      title: 'Year',
+      dataIndex: 'Year',
+      key: 'Year',
+      width: '5%',
+      ...getColumnSearchProps('Year')
     },
     {
-      title: 'Email',
-      dataIndex: 'email',
-      key: 'email',
-      width: '20%',
-      ...getColumnSearchProps('age')
-    },
-    {
-      title: 'Address',
-      dataIndex: 'address',
-      key: 'address',
-      ...getColumnSearchProps('address'),
-      sorter: (a, b) => a.address.length - b.address.length,
-      sortDirections: ['descend', 'ascend']
-    },
-    {
-      title: '',
-      dataIndex: '',
-      key: 'x',
-      width: '3%',
-      render: (text, record) => (
-        <div style={{ cursor: 'pointer' }} onClick={() => console.log(record.key, text)}>
-          <Dropdown menu={{ items }}>
-            <MoreOutlined />
-          </Dropdown>
-        </div>
-      )
+      title: 'Access.to.electricity',
+      dataIndex: 'Access.to.electricity',
+      key: 'Access.to.electricity',
+      ...getColumnSearchProps('Access.to.electricity'),
+      sorter: (a, b) => a['Access.to.electricity'] - b['Access.to.electricity']
     }
   ];
 
@@ -205,7 +164,7 @@ const ReportList: React.FC = () => {
       ) : (
         <div>
           <div className="header_table">
-            <span className="title_table">List of teacher</span>
+            <span className="title_table">Access to electricity in VietNam</span>
           </div>
           <Table
             pagination={{ pageSize: 7 }}

@@ -16,7 +16,6 @@ const Styled = styled.div`
   }
 
   .title_table {
-    width: 200px;
     height: 33px;
     left: 438px;
     top: 136px;
