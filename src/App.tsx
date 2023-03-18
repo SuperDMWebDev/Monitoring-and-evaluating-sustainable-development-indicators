@@ -13,9 +13,9 @@ const App = () => {
       <ToastContainer {...defaultToastConfig} />
       <BrowserRouter>
         <Routes>
-          <Route path="/login" element={<SignIn />} />
+          {/* <Route path="/login" element={<SignIn />} /> */}
           <Route path="/home" element={<Home />} />
-          <Route path="*" element={<Navigate to="/login" replace />} />
+          <Route path="*" element={<Navigate to="/home" replace />} />
         </Routes>
       </BrowserRouter>
     </div>
