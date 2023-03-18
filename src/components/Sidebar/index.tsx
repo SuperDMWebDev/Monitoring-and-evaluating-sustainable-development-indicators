@@ -22,10 +22,10 @@ export default function Sidebar(props: SidebarProps) {
         collapsed={collapsed}
         onCollapse={(value) => setCollapsed(value)}>
         <div className="sidebar__logo" style={{ height: 32, margin: 16 }}>
-          <span className="logo">
+          {/* <span className="logo">
             <img src="/assets/images/logo.png" alt="logo" />
-          </span>
-          <span className="sidebar__title">Dashboard</span>
+          </span> */}
+          <span className="sidebar__title">SDG</span>
         </div>
         <Menu
           className="sidebar__menu"

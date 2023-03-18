@@ -19,15 +19,15 @@ const config = {
     'Access-Control-Allow-Credentials': 'credentials'
   }
 };
-// export const loginUser = async (email: String, password: String) => {
-//   const response: Response = await axios.post(
-//     `${URL}/auth/login`,
-//     {
-//       email,
-//       password
-//     },
-//     config
-//   );
-//   console.log('response ', response);
-//   return response;
-// };
+export const loginUser = async (email: String, password: String) => {
+  const response: Response = await axios.post(
+    `${URL}/auth/login`,
+    {
+      email,
+      password
+    },
+    config
+  );
+  console.log('response ', response);
+  return response;
+};
