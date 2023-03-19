@@ -15,8 +15,8 @@ const LandingPage = () => {
   );
   const images = [
     '/assets/solar_energy_2.jpg',
-    '/assets/solar_energy_3.jpeg',
-    '/assets/solar_energy_4.jpeg'
+    '/assets/solar_energy_3.jpg',
+    '/assets/solar_energy_4.jpg'
   ];
   return (
     <Styled>
