@@ -55,6 +55,17 @@ const LandingPage = () => {
           </div>
           <div className="pyramid__container">
             <img src="/assets/pyramid.png" placeholder="pyramid" />
+            <div className="pyramid__text">
+              <span>Source:</span>
+              <span>
+                [1] Office of Energy Efficiency and Renewable Energy
+                <br />
+                [2] www.weforum.org
+                <br />
+                [3] Cục điện lực và năng lượng tái tạo, Báo cáo tình hình phát triển điện mặt trời
+                mái nhà, 24/08/2020
+              </span>
+            </div>
           </div>
         </section>
         <section className="section-index about-index">

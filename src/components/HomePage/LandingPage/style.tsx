@@ -85,9 +85,22 @@ const Styled = styled.div`
     left: 48%;
   }
   .pyramid__container {
+  }
+  .pyramid__container img {
+    margin: 0 auto;
+  }
+  .pyramid__text {
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: row;
+    gap: 10px;
+    margin: 0 auto;
+    width: fit-content;
+  }
+  .pyramid__text span {
+    padding-top: 15px;
+  }
+  .pyramid__text p {
+    width: fit-content;
   }
 `;
 
