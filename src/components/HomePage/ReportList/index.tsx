@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { SearchOutlined, MoreOutlined, DeleteOutlined } from '@ant-design/icons';
 import type { InputRef } from 'antd';
-import { Button, Input, Space, Table } from 'antd';
+import { Button, Input, Space, Table, Select } from 'antd';
 import type { ColumnsType, ColumnType } from 'antd/es/table';
 import type { FilterConfirmProps } from 'antd/es/table/interface';
 import type { MenuProps } from 'antd';
@@ -11,17 +11,16 @@ import Loader from '../../Loader/Loader';
 import './style.css';
 import { useNavigate } from 'react-router-dom';
 import { accessData } from '../../../utils/constants';
+import { getReports, getTitle } from '../../../utils/api';
 
-interface DataType {
+export interface DataType {
   Entity: String;
   Code: String;
   Year: number;
-  'Access.to.electricity': number;
+  Data: number;
 }
 
 type DataIndex = keyof DataType;
-
-const data: DataType[] = accessData;
 
 // Menu Dropdown
 const items: MenuProps['items'] = [
@@ -41,12 +40,48 @@ const ReportList: React.FC = () => {
   const [searchedColumn, setSearchedColumn] = useState('');
   const searchInput = useRef<InputRef>(null);
   const [loading, setLoading] = useState(true);
+  const [title, setTitle] = useState([]);
+  const [currentTitle, setCurrentTitle] = useState(1);
+  const [data, setData] = useState<DataType[]>([]);
 
   useEffect(() => {
-    setTimeout(() => {
+    const x = setTimeout(() => {
       setLoading(false);
     }, 1500);
+    return () => {
+      clearTimeout(x);
+    };
   }, []);
+
+  useEffect(() => {
+    const getTitleForReportList = async () => {
+      const data = await getTitle();
+      setTitle(data);
+    };
+    getTitleForReportList();
+  }, []);
+
+  useEffect(() => {
+    const keyData = 'jsonData';
+    const getReportsForReportList = async (currentTitle: number) => {
+      const data = await getReports(currentTitle);
+      const dataArr = data[keyData];
+      const keys = Object.keys(dataArr[0]);
+      let newListArr = [];
+      for (let i = 0; i < dataArr.length; i++) {
+        const newObject = {
+          Entity: dataArr[i][keys[0]],
+          Code: dataArr[i][keys[1]],
+          Year: dataArr[i][keys[2]],
+          Data: dataArr[i][keys[3]]
+        };
+        newListArr.push(newObject);
+      }
+      console.log('newListArr  ', newListArr);
+      setData(newListArr);
+    };
+    getReportsForReportList(currentTitle);
+  }, [currentTitle]);
 
   const handleSearch = (
     selectedKeys: string[],
@@ -149,22 +184,38 @@ const ReportList: React.FC = () => {
       ...getColumnSearchProps('Year')
     },
     {
-      title: 'Access.to.electricity',
-      dataIndex: 'Access.to.electricity',
-      key: 'Access.to.electricity',
-      ...getColumnSearchProps('Access.to.electricity'),
-      sorter: (a, b) => a['Access.to.electricity'] - b['Access.to.electricity']
+      title: 'Data',
+      dataIndex: 'Data',
+      key: 'Data',
+      ...getColumnSearchProps('Data'),
+      sorter: (a, b) => a['Data'] - b['Data']
     }
   ];
-
+  const handleChangeTitle = (value: number) => {
+    console.log('change value ', value);
+    setCurrentTitle(value);
+  };
   return (
     <>
       {loading ? (
         <Loader />
       ) : (
         <div>
+          {title && (
+            <Select
+              defaultValue={title[currentTitle - 1].title}
+              onChange={handleChangeTitle}
+              style={{ width: 'fit-content' }}
+              options={title.map((item, index) => {
+                return {
+                  label: item.title,
+                  value: item.id
+                };
+              })}
+            />
+          )}
           <div className="header_table">
-            <span className="title_table">Access to electricity in VietNam</span>
+            <span className="title_table">{`List data of ${title[currentTitle - 1].title}`}</span>
           </div>
           <Table
             pagination={{ pageSize: 7 }}

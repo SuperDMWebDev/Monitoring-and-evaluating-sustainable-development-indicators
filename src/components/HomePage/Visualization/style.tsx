@@ -13,7 +13,7 @@ const Styled = styled.div`
     text-transform: uppercase;
     text-align: left;
     margin-bottom: 20px;
-    line-height: 33px;
+    line-height: 50px;
     letter-spacing: -0.01em;
     color: rgb(22, 119, 255);
     text-shadow: rgba(0, 0, 0, 0.25) 0px 2px 2px;

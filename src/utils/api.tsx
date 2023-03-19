@@ -30,3 +30,15 @@ export const loginUser = async (email: String, password: String) => {
   );
   return response;
 };
+
+export const getTitle = async () => {
+  const response = await axios.get(`${URL}/reports/title`);
+  console.log('data ', response);
+  return response.data;
+};
+
+export const getReports = async (id: number) => {
+  const response = await axios.get(`${URL}/reports/?id=${id}`);
+  console.log('🚀 ~ file: api.tsx:43 ~ getReports ~ response:', response);
+  return response.data;
+};
