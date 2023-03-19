@@ -30,7 +30,7 @@ const items: ItemType[] = [
 ];
 export function Home() {
   const [collapsed, setCollapsed] = useState(false);
-  const [currentKey, setCurrentKey] = useState('3');
+  const [currentKey, setCurrentKey] = useState('1');
   return (
     <>
       <Styled>
