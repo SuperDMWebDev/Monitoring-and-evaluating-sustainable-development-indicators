@@ -38,9 +38,9 @@ const Visualization = () => {
       let newListArr = [];
       for (let i = 0; i < dataArr.length; i++) {
         const newObject = {
-          Entity: dataArr[i][keys[0]],
-          Code: dataArr[i][keys[1]],
-          Year: dataArr[i][keys[2]],
+          Entity: dataArr[i]['Entity'],
+          Code: dataArr[i]['Code'],
+          Year: dataArr[i]['Year'],
           Data: dataArr[i][keys[3]]
         };
         newListArr.push(newObject);
@@ -85,7 +85,7 @@ const Visualization = () => {
                   <XYPlot width={width} height={height}>
                     <HorizontalGridLines />
                     <XAxis title="Year" />
-                    <YAxis title="Access to electricity" />
+                    <YAxis title="Data" />
                     <LineMarkSeries
                       style={{
                         strokeWidth: '5px'
@@ -93,14 +93,13 @@ const Visualization = () => {
                       lineStyle={{ stroke: 'green' }}
                       markStyle={{ stroke: 'red', fill: 'white', width: '4px' }}
                       curve={'curveCatmullRom'}
-                      colorType="literal"
                       data={data.map((item, index) => {
+                        console.log('year ', item.Year);
                         return {
                           x: item.Year,
                           y: item.Data
                         };
                       })}
-                      fill="blue"
                     />
                   </XYPlot>
                 )}
