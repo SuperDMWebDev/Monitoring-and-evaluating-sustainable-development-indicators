@@ -67,13 +67,14 @@ const ReportList: React.FC = () => {
       const data = await getReports(currentTitle);
       const dataArr = data[keyData];
       const keys = Object.keys(dataArr[0]);
+      const dataKey = keys.filter((key) => key != "Entity" && key != "Code" && key != "Year")[0];
       let newListArr = [];
       for (let i = 0; i < dataArr.length; i++) {
         const newObject = {
-          Entity: dataArr[i][keys[0]],
-          Code: dataArr[i][keys[1]],
-          Year: dataArr[i][keys[2]],
-          Data: dataArr[i][keys[3]]
+          Entity: dataArr[i]['Entity'],
+          Code: dataArr[i]['Code'],
+          Year: dataArr[i]['Year'],
+          Data: dataArr[i][dataKey]
         };
         newListArr.push(newObject);
       }
